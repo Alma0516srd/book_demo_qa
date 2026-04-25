@@ -12,12 +12,9 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // BUG: Missing authorization - all endpoints are publicly accessible
         http
             .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(authz -> authz
-                .anyRequest().permitAll()
-            );
+            .authorizeHttpRequests(authz -> authz.anyRequest().permitAll());
         return http.build();
     }
 }
